@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python dvc_train.py
+    deps:
+    - path: data/iris.csv
+      hash: md5
+      md5: 9526fc43845ba89c633c785bcc00eabc
+      size: 3023
+    - path: dvc_train.py
+      hash: md5
+      md5: d95e74689e460e8cc06c9468ba9ce56e
+      size: 1501
+    params:
+      params.yaml:
+        models:
+          v1:
+            n_estimators: 100
+            max_depth:
+          v2:
+            n_estimators: 200
+            max_depth: 5
+        train:
+          test_size: 0.2
+          random_state: 42
+    outs:
+    - path: metrics_v1.json
+      hash: md5
+      md5: ac74035b7f269927febff1ef8b048dc1
+      size: 97
+    - path: metrics_v2.json
+      hash: md5
+      md5: ac74035b7f269927febff1ef8b048dc1
+      size: 97
+    - path: pipeline_models/random_forest_v1.pkl
+      hash: md5
+      md5: 8c00ee9aac87ac209a191acca462759c
+      size: 180529
+    - path: pipeline_models/random_forest_v2.pkl
+      hash: md5
+      md5: 9d0ac544061e288ef63630d50863813d
+      size: 332737
